@@ -1,0 +1,17 @@
+﻿anthropic
+edge-tts
+google-genai
+google-auth-oauthlib
+google-api-python-client
+icalendar
+recurring-ical-events
+librosa
+numpy
+scipy
+pillow
+playwright
+requests
+sounddevice
+SpeechRecognition
+webrtcvad-wheels
+torch

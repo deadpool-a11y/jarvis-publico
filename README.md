@@ -1,4 +1,4 @@
-﻿# Jarvis
+# Jarvis
 
 Assistente de voz em Python para **Windows**, inspirado no Jarvis dos filmes. Ele escuta comandos falados, responde com voz, mostra um painel (HUD) na tela e cuida da sua rotina: agenda, clima, notícias, lembretes, e-mails e muito mais.
 
@@ -16,6 +16,7 @@ Roda com IA local pelo [Ollama](https://ollama.com), então não precisa pagar A
 - **Telegram e e-mail (opcionais):** controle e avisos pelo celular, leitura de e-mails novos do Gmail.
 - **Comandos novos sob demanda (opcional):** se você pedir algo que ele não conhece, ele pode criar o comando com a IA local.
 - **Auto aprimoramento (opcional):** ele pode se atualizar e contar o que mudou.
+- **Início seguro:** pode abrir junto com o Windows, mas só depois que você digita a senha.
 
 > Os recursos opcionais só funcionam se você configurar as variáveis da tabela abaixo.
 
@@ -52,6 +53,18 @@ python jarvis.py
 
 Na primeira vez ele pede para cadastrar a sua voz. Fale as frases que ele pedir. O cadastro fica **só no seu computador**.
 
+Para a música de abertura, coloque um arquivo chamado `back_in_black.mp3` na pasta do projeto (opcional; sem ele o resto funciona normalmente).
+
+## Abrir junto com o Windows (opcional)
+
+```powershell
+python iniciar_com_windows.py            # ativa
+python iniciar_com_windows.py status     # mostra se está ativo
+python iniciar_com_windows.py remover    # desativa
+```
+
+Ele cria uma tarefa do Windows que abre o Jarvis ao entrar no Windows e ao desbloquear o PC. Se a tela estiver bloqueada, o Jarvis espera você digitar a senha antes de falar ou escutar.
+
 ## Configuração (opcional)
 
 Configure só o que for usar. No PowerShell, rode `setx NOME "valor"` e depois **abra um terminal novo**.
@@ -87,6 +100,8 @@ setx JARVIS_MODELO "qwen2.5:7b"
 | `jarvis_memoria.py` | Memória de longo prazo |
 | `jarvis_mensagens.py`, `jarvis_telegram.py` | Telegram e e-mail |
 | `gerador_comandos.py`, `auto_aprimorar.py` | Comandos novos e auto aprimoramento |
+| `iniciar_com_windows.py` | Abre o Jarvis ao entrar no Windows e ao desbloquear |
+| `jarvis_bloqueio.py` | Espera o desbloqueio do Windows antes de continuar |
 | `jarvis_conferir.py` | Diagnóstico para achar o que está faltando |
 
 ## Segurança
@@ -100,10 +115,13 @@ setx JARVIS_MODELO "qwen2.5:7b"
 
 - **`ModuleNotFoundError`:** o ambiente virtual não está ativo (`.\venv\Scripts\activate`) ou faltou rodar o `pip install -r requirements.txt`.
 - **Erro pedindo Visual C++ ao instalar:** use o Python 3.12 e instale o `resemblyzer` com `--no-deps`, como na seção de instalação.
+- **O Jarvis abre sem pedir senha:** confira se o login automático do Windows está desligado (Windows + R, `netplwiz`, e marque "Os usuários devem digitar seu nome e senha").
 - **Algo não funciona:** rode `python jarvis_conferir.py`. Ele testa a configuração e gera um relatório **sem senhas**.
+
+## Aviso
+
+Projeto pessoal em desenvolvimento, testado em Windows 11 com Python 3.12.
 
 ## Contribuindo
 
 Sugestões e correções são bem-vindas: abra uma *issue* ou um *pull request*.
-
-

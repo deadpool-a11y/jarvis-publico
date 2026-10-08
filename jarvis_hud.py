@@ -1,3 +1,9 @@
+# --- trava inicio_seguro: nao inicia com a tela bloqueada ---
+import sys as _sys_trava
+if '--inicio-windows' in _sys_trava.argv:
+    from jarvis_bloqueio import esperar_desbloqueio
+    esperar_desbloqueio()
+# --- fim da trava ---
 """
 Jarvis HUD - tela estilo painel futurista Stark Industries (ciano neon).
 
